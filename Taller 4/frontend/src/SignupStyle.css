@@ -1,0 +1,91 @@
+/* Estilo para el cuerpo de la página */
+body {
+    margin: 0;
+    /*background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);*/
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Estilo para el contenedor principal */
+  .container {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Sombra */
+    text-align: center;
+    max-width: 400px; /* Ancho máximo del contenedor */
+  }
+  
+  /* Estilo para el título "Registro de Usuario" */
+  .container h2 {
+    font-size: 28px;
+    color: #333;
+    margin: 0 0 20px; /* Espacio inferior reducido */
+  }
+  
+  /* Estilo para los grupos de formulario */
+  .form-group {
+    margin-bottom: 20px; /* Espacio inferior aumentado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilo para el formulario y sus elementos */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 5px;
+  }
+  
+  input {
+    width: 110%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo para el enlace "Iniciar Sesión" */
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
