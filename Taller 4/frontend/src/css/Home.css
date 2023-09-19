@@ -1,0 +1,162 @@
+/* Home.css */
+
+/* Aplicar un fondo blanco a toda la interfaz */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white !important;
+  }
+  
+  .home-container {
+    max-width: 100%; /* Ocupar todo el ancho de la pantalla */
+    min-height: 100vh; /* Ocupar toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinear contenido en la parte superior */
+    padding: 20px;
+  }
+  
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0; /* Elimina el relleno horizontal, agrega relleno vertical */
+    background-color: #0079d3;
+    color: white;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .user-avatar {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Mover hacia la derecha */
+    margin-right: 20px; /* Añadir margen derecho */
+  }
+  
+  .user-avatar {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Mover hacia la derecha */
+  }
+  
+  
+  .user-options {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10px;
+  }
+  
+  .user-avatar:hover .user-options {
+    display: flex;
+  }
+  
+  .user-options span {
+    margin-bottom: 5px;
+  }
+  
+  .user-options button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .search-bar {
+    display: flex;
+    flex-grow: 1; /* Expande la barra de búsqueda */
+  }
+  
+  input[type="text"] {
+    flex-grow: 1; /* Expande el campo de búsqueda */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  button {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  select {
+    padding: 5px;
+  }
+  
+  /* Estilos para las publicaciones */
+  .main {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para las publicaciones */
+  .publication {
+    width: 100%;
+    max-width: 600px; /* Limita el ancho de las publicaciones */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 10px; /* Bordes redondeados */
+    width: 160px; /* Ancho rectangular */
+    height: 40px; /* Altura */
+    font-size: 14px; /* Tamaño de texto reducido */
+    text-align: center;
+    line-height: 40px; /* Alineación vertical del texto */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Evita que el texto se desborde del botón */
+    white-space: nowrap; /* Evita saltos de línea en el texto largo */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos para texto largo */
+  }
+  
+  .floating-button:hover {
+    background-color: #005aa8;
+  }
+  

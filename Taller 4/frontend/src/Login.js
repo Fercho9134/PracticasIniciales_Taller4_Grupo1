@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './SignupStyle.css';
+import './css/style.css';
 import {Helmet} from 'react-helmet';
 
 function Login() {

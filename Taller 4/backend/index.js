@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import loginRoutes from './routes/login.routes.js';
+import publicacionRoutes from './routes/publicaciones.routes.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 8081;
@@ -31,6 +32,7 @@ app.use(session({
 }));
 
 app.use('/', loginRoutes);
+app.use('/publicaciones', publicacionRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
