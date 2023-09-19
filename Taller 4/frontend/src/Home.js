@@ -29,6 +29,11 @@ function Home() {
   const [selectedPublicationComments, setSelectedPublicationComments] = useState([]);
   const [isCommentBoxVisible, setCommentBoxVisible] = useState(false);
 
+  const [opcionesNombresCatedraticos, setOpcionesNombresCatedraticos] = useState([]);
+  const [opcionesNombresCursos, setOpcionesNombresCursos] = useState([]);
+  const [idSeleccionado, setIdSeleccionado] = useState('');
+  const [nombreFiltroSeleccionado, setNombreFiltroSeleccionado] = useState('');
+
 
   // Nueva función para abrir la ventana emergente de comentarios y cargar los comentarios de la publicación
   const handleOpenCommentsModal = (publication) => {
@@ -45,6 +50,40 @@ function Home() {
   const handleCommentChange = (e) => {
     setNewCommentText(e.target.value);
   };
+
+  const handleCourseChange = (e) => {
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    const selectedId = selectedOption.getAttribute('data-id');
+    setIdSeleccionado(selectedId);
+    setSelectedCourse(e.target.value);
+    setSelectedProfessor('');
+  
+    axios.get(`http://localhost:8081/publicaciones/cargarpublicacionescurso/${selectedId}`)
+      .then((res) => {
+        setPublications(res.data);
+      })
+      .catch((err) => {
+        console.error('Error al obtener las publicaciones filtradas:', err);
+      });
+  };
+  
+  const handleProfessorChange = (e) => {
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    const selectedId = selectedOption.getAttribute('data-id');
+    setIdSeleccionado(selectedId);
+    setSelectedProfessor(e.target.value);
+    setSelectedCourse(''); 
+    axios.get(`http://localhost:8081/publicaciones/cargarpublicacionescatedratico/${selectedId}`)
+      .then((res) => {
+        setPublications(res.data);
+      })
+      .catch((err) => {
+        console.error('Error al obtener las publicaciones filtradas:', err);
+      });
+  };
+  
+
+  
 
 
   useEffect(() => {
@@ -64,6 +103,24 @@ function Home() {
     // Llamar a la función para cargar publicaciones cuando el componente se monta
     getPublications();
   }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/publicaciones/catedraticos')
+      .then(res => {
+        setOpcionesNombresCatedraticos(res.data.map(catedratico => ({
+          id: catedratico.catedratico_id,
+          nombre: catedratico.nombre
+        })));
+      }).catch(err => console.log(err));
+  }, []);
+
+  axios.get('http://localhost:8081/publicaciones/cursos')
+    .then(res => {
+      setOpcionesNombresCursos(res.data.map(curso => ({
+        id: curso.curso_id,
+        nombre: curso.nombre_curso
+      })));
+    }).catch(err => console.log(err));
 
   const getPublications = () => {
     axios.get('http://localhost:8081/publicaciones')
@@ -120,6 +177,10 @@ function Home() {
       .catch((err) => console.log(err));
   };
 
+  const handleNewPublication = () => {
+    navigate('/nueva-publicacion');
+  };
+
 
 
   return (
@@ -137,18 +198,26 @@ function Home() {
         </div>
         <div className="filters">
           <select
-            value={selectedCourse}
-            onChange={(e) => setSelectedCourse(e.target.value)}
+            value={selectedProfessor}
+            onChange={handleProfessorChange}
           >
-            <option value="">Filtrar por curso</option>
-            {/* Opciones de cursos */}
+            <option value="" data-id=""></option>
+            {opcionesNombresCatedraticos.map((opcion) => (
+              <option key={opcion.id} value={opcion.id} data-id={opcion.id}>
+                {opcion.nombre}
+              </option>
+            ))}
           </select>
           <select
-            value={selectedProfessor}
-            onChange={(e) => setSelectedProfessor(e.target.value)}
+            value={selectedCourse}
+            onChange={handleCourseChange}
           >
-            <option value="">Filtrar por catedrático</option>
-            {/* Opciones de catedráticos */}
+            <option value="" data-id=""></option>
+            {opcionesNombresCursos.map((opcion) => (
+              <option key={opcion.id} value={opcion.id} data-id={opcion.id}>
+                {opcion.nombre}
+              </option>
+            ))}
           </select>
         </div>
         <div className="user-info">
@@ -176,7 +245,7 @@ function Home() {
               <div className="course-or-professor">
                 <span><b>Curso o profesor:</b> {publication.nombre_catedratico}{publication.nombre_curso}</span>
                 <br />
-                <span><b>Calificación:</b> {publication.calificacion_estrellas}</span>
+                <span><b>Calificación:</b> {publication.calificacion_estrellas}/5</span>
               </div>
               <br></br>
               <div className="text">{publication.mensaje}</div>
@@ -220,7 +289,7 @@ function Home() {
         ))}
       </main>
 
-      <div className="floating-button">Escribir publicación</div>
+      <div className="floating-button" onClick={handleNewPublication}>Escribir publicación</div>
     </div>
   );
 }

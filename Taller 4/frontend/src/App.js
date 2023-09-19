@@ -3,6 +3,7 @@ import Signup from './Signup.js';
 import Login from './Login.js';
 import Home from './Home.js';
 import Recuperacion from './Recuperacion.js';
+import NuevaPublicacion from './NuevaPublicacion.js';
 import {Helmet} from 'react-helmet';
 
 
@@ -17,6 +18,8 @@ function App() {
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/recuperacion' element={<Recuperacion/>}></Route>
+          <Route path='/nueva-publicacion' element={<NuevaPublicacion/>}></Route>
+
 
       </Routes>
     </BrowserRouter>

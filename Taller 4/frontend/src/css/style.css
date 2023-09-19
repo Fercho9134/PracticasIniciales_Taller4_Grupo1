@@ -1,13 +1,15 @@
 /* Estilos para el cuerpo de la página */
 body {
     margin: 0;
-    background-color: #121212; /* Fondo oscuro */
+    background-color: #121212;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Cambiar a flex-start */
     height: 100vh;
+    min-height: 100vh;
 }
+
 
 /* Estilo para el contenedor principal */
 .container {
@@ -18,6 +20,7 @@ body {
     text-align: center;
     max-width: 400px; /* Ancho máximo del contenedor */
     color: #333; /* Color de texto para el modo nocturno */
+    margin-top: 15px;
 }
 
 /* Estilo para el título "Registro de Usuario" */
@@ -105,9 +108,11 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 16px 0;
-    background-color: #333; /* Color de fondo para la barra de navegación en el modo nocturno */
-    color: #fff; /* Color de texto para la barra de navegación en el modo nocturno */
+    background-color: #333;
+    color: #fff;
+    height: 60px; /* Agrega una altura al encabezado */
 }
+
 
 .logo {
     font-size: 24px;
@@ -201,7 +206,11 @@ select {
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    max-height: 80vh; /* Establece una altura máxima para el contenedor de publicaciones */
+    overflow-y: auto;
 }
+
+
 
 /* Estilos para las publicaciones */
 .publication {
@@ -211,13 +220,14 @@ select {
     border-radius: 5px;
     padding: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Agrega un margen inferior para separar las publicaciones */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Alinea los elementos a la izquierda */
     background-color: #333; /* Color de fondo para las publicaciones en el modo nocturno */
     color: #fff; /* Color de texto para las publicaciones en el modo nocturno */
 }
+
 
 .publication .content{
     margin-top: 10px;
@@ -318,4 +328,63 @@ select {
     background-color: rgb(255, 79, 79);
   }
 
+  .nueva-publicacion {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Ajusta el ancho según tus necesidades */
+  }
   
+  
+  .nueva-publicacion h2 {
+    font-size: 24px; /* Tamaño de fuente del título */
+    margin-bottom: 20px; /* Espaciado inferior del título */
+  }
+  
+  /* Estilos para los elementos del formulario */
+  .nueva-publicacion .form-group {
+    margin-bottom: 15px; /* Espaciado inferior entre grupos de elementos */
+  }
+  
+  .nueva-publicacion .form-group label {
+    display: block; /* Hace que las etiquetas ocupen todo el ancho disponible */
+    margin-bottom: 5px; /* Espaciado inferior de la etiqueta */
+  }
+  
+  .nueva-publicacion select, input[type="number"], textarea {
+    width: 100%; /* Ancho completo dentro del formulario */
+    padding: 10px; /* Espaciado interior */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+  }
+  
+  .nueva-publicacion textarea {
+    resize: vertical; /* Permite ajustar la altura verticalmente */
+  }
+  
+  /* Estilos para los botones */
+  .botones {
+    text-align: right; /* Alinea los botones a la derecha */
+    margin-top: 20px; /* Espaciado superior entre botones */
+  }
+  
+  .botones button {
+    padding: 10px 20px; /* Espaciado interior del botón */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    background-color: #007bff; /* Color de fondo azul */
+    color: #fff; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    margin-left: 10px; /* Espaciado izquierdo entre botones */
+  }
+  
+  .botones button[type="submit"] {
+    background-color: #28a745; /* Color de fondo verde para el botón de "Publicar" */
+  }
+  
+  .botones button:hover {
+    background-color: #0056b3; /* Color de fondo azul más oscuro al pasar por encima */
+  }
