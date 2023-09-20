@@ -13,6 +13,8 @@ function Home() {
   const userAvatar = 'https://i.ibb.co/CMsqBx2/avatar.png';
   axios.defaults.withCredentials = true;
 
+
+
   const [publications, setPublications] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [selectedCourse, setSelectedCourse] = useState('');
@@ -32,7 +34,6 @@ function Home() {
   const [opcionesNombresCatedraticos, setOpcionesNombresCatedraticos] = useState([]);
   const [opcionesNombresCursos, setOpcionesNombresCursos] = useState([]);
   const [idSeleccionado, setIdSeleccionado] = useState('');
-  const [nombreFiltroSeleccionado, setNombreFiltroSeleccionado] = useState('');
 
 
   // Nueva función para abrir la ventana emergente de comentarios y cargar los comentarios de la publicación
@@ -57,6 +58,11 @@ function Home() {
     setIdSeleccionado(selectedId);
     setSelectedCourse(e.target.value);
     setSelectedProfessor('');
+
+    if (selectedId === '') {
+      getPublications();
+      return;
+    }
   
     axios.get(`http://localhost:8081/publicaciones/cargarpublicacionescurso/${selectedId}`)
       .then((res) => {
@@ -72,7 +78,12 @@ function Home() {
     const selectedId = selectedOption.getAttribute('data-id');
     setIdSeleccionado(selectedId);
     setSelectedProfessor(e.target.value);
-    setSelectedCourse(''); 
+    setSelectedCourse('');
+
+    if (selectedId === '') {
+      getPublications();
+      return;
+    }
     axios.get(`http://localhost:8081/publicaciones/cargarpublicacionescatedratico/${selectedId}`)
       .then((res) => {
         setPublications(res.data);
@@ -114,13 +125,15 @@ function Home() {
       }).catch(err => console.log(err));
   }, []);
 
-  axios.get('http://localhost:8081/publicaciones/cursos')
-    .then(res => {
-      setOpcionesNombresCursos(res.data.map(curso => ({
-        id: curso.curso_id,
-        nombre: curso.nombre_curso
-      })));
-    }).catch(err => console.log(err));
+  useEffect(() => {
+    axios.get('http://localhost:8081/publicaciones/cursos')
+      .then(res => {
+        setOpcionesNombresCursos(res.data.map(Curso => ({
+          id: Curso.curso_id,
+          nombre: Curso.nombre_curso
+        })));
+      }).catch(err => console.log(err));
+  }, []);
 
   const getPublications = () => {
     axios.get('http://localhost:8081/publicaciones')
@@ -129,6 +142,10 @@ function Home() {
       })
       .catch(err => console.log(err));
   };
+
+  const handleViewProfile = () => {
+    navigate(`/my-profile`);
+  }
 
   const handleSubmitComment = (e) => {
     e.preventDefault();
@@ -162,7 +179,7 @@ function Home() {
 
 
   const handleSearch = () => {
-    // Aquí puedes implementar la lógica para buscar publicaciones según el valor de "searchInput", "selectedCourse" y "selectedProfessor"
+    navigate(`/users/${searchInput}`);
   };
 
   const handleLogout = () => {
@@ -225,7 +242,7 @@ function Home() {
             <img src={userAvatar} alt="Avatar" />
             <div className="user-options">
               <span>{name} {apellidos}</span>
-              <button>Ver Perfil</button>
+              <button onClick={handleViewProfile}>Ver Perfil</button>
               <button onClick={handleLogout}>Cerrar Sesión</button>
             </div>
           </div>

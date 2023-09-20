@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import './css/style.css';
 
 const NuevaPublicacion = () => {
   const navigate = useNavigate();
@@ -176,7 +177,7 @@ const NuevaPublicacion = () => {
 
         <div className="botones">
           <button type="submit" onClick={handleSubmit}>Publicar</button>
-          <button type="button" onClick={handleCancelar}>
+          <button type="button" className="btnCancelar" onClick={handleCancelar}>
             Cancelar
           </button>
         </div>
