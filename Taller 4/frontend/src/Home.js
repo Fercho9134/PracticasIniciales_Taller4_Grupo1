@@ -198,6 +198,22 @@ function Home() {
     navigate('/nueva-publicacion');
   };
 
+  const filtroCursos = () => {
+    axios.get('http://localhost:8081/publicaciones/cargarpublicacionessolocursos')
+      .then(res => {
+        setPublications(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const filtroCatedraticos = () => {
+    axios.get('http://localhost:8081/publicaciones/cargarpublicacionessolocatedraticos')
+      .then(res => {
+        setPublications(res.data);
+      })
+      .catch(err => console.log(err));
+  }
+
 
 
   return (
@@ -212,6 +228,9 @@ function Home() {
             onChange={(e) => setSearchInput(e.target.value)}
           />
           <button onClick={handleSearch}>Buscar</button>
+          <button onClick={filtroCursos}>Filtrar por cursos</button>
+          <button onClick={filtroCatedraticos}>Filtrar por catedraticos</button>
+          <button onClick={getPublications}>Mostrar todo</button>
         </div>
         <div className="filters">
           <select

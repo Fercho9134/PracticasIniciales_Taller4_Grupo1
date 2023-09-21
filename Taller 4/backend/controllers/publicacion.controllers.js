@@ -139,3 +139,33 @@ export const cargarPublicacionesCurso = async (req, res) => {
         return res.json({ error: "Error al cargar publicaciones" });
     }
 }
+
+export const cargarPublicacionesSoloCursos = async (req, res) => {
+    try {
+        database.query(QUERY.cargarPublicacionesSoloCursos, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.json({ error: "Error al cargar publicaciones" });
+            }
+            return res.json(result);
+        });
+    } catch (error) {
+        console.log(error);
+        return res.json({ error: "Error al cargar publicaciones" });
+    }
+}
+
+export const cargarPublicacionesSoloCatedraticos = async (req, res) => {
+    try {
+        database.query(QUERY.cargarPublicacionesSoloCatedraticos, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.json({ error: "Error al cargar publicaciones" });
+            }
+            return res.json(result);
+        });
+    } catch (error) {
+        console.log(error);
+        return res.json({ error: "Error al cargar publicaciones" });
+    }
+}

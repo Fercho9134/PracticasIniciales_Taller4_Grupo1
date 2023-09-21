@@ -1,5 +1,5 @@
 import express from 'express';
-import { cargarPublicaciones, cargarComentarios, nuevoComentario, ObtenerCatedraticos, ObtenerCursos, nuevaPublicacionCatedratico, nuevaPublicacionCurso, cargarPublicacionesCatedratico, cargarPublicacionesCurso } from '../controllers/publicacion.controllers.js';
+import { cargarPublicaciones, cargarComentarios, nuevoComentario, ObtenerCatedraticos, ObtenerCursos, nuevaPublicacionCatedratico, nuevaPublicacionCurso, cargarPublicacionesCatedratico, cargarPublicacionesCurso, cargarPublicacionesSoloCursos, cargarPublicacionesSoloCatedraticos } from '../controllers/publicacion.controllers.js';
 
 const publicacionRoutes = express.Router();
 
@@ -12,6 +12,9 @@ publicacionRoutes.post('/nuevapublicacioncatedratico', nuevaPublicacionCatedrati
 publicacionRoutes.post('/nuevapublicacioncurso', nuevaPublicacionCurso);
 publicacionRoutes.get('/cargarpublicacionescatedratico/:id', cargarPublicacionesCatedratico);
 publicacionRoutes.get('/cargarpublicacionescurso/:id', cargarPublicacionesCurso);
+publicacionRoutes.get('/cargarpublicacionessolocursos', cargarPublicacionesSoloCursos);
+publicacionRoutes.get('/cargarpublicacionessolocatedraticos', cargarPublicacionesSoloCatedraticos);
+
 
 
 export default publicacionRoutes;

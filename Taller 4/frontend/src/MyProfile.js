@@ -20,6 +20,8 @@ function MyProfile() {
     axios.get('http://localhost:8081')
       .then(res => {
         if (res.data.valid) {
+          console.log('Usuario autenticado');
+          console.log(res.data.user);
           setUserData(res.data.user);
           setIdUsuario(res.data.user.user_id);
           setEditedData({
@@ -30,6 +32,8 @@ function MyProfile() {
           });
         } else {
           navigate('/login');
+          console.log('Usuario no autenticado');
+          console.log(res.data);
         }
       })
       .catch(err => console.log(err));
@@ -189,7 +193,7 @@ function MyProfile() {
             <li key={course.curso_id}>
               <div className="course-info">
                 <span className="course-name">{course.nombre_curso}</span>
-                <span className="course-credits">Créditos: {course.creditos}</span>
+                <span className="course-credits"> - Créditos: {course.creditos}</span>
               </div>
               <button
                 className={`toggle-button ${coursesAprobados.some((c) => c.curso_id === course.curso_id) ? 'remove' : 'add'}`}
