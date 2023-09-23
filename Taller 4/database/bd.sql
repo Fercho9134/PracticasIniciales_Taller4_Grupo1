@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS Publicaciones (
     FOREIGN KEY (curso_id) REFERENCES Cursos(curso_id)
 );
 
--- Verificar si la tabla Comentarios no existe antes de crearla
+-- Verificar si la tabla Comentarios no existe antes de crearla.
 CREATE TABLE IF NOT EXISTS Comentarios (
     comentario_id INT AUTO_INCREMENT PRIMARY KEY,
     publicacion_id INT,
